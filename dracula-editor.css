@@ -1,0 +1,130 @@
+:root {
+  --dracula_Background: #282a36;
+  --dracula_CurrentLine: #44475a;
+  --dracula_Foreground: #f8f8f2;
+  --dracula_Comment: #6272a4;
+  --dracula_Cyan: #8be9fd;
+  --dracula_Green: #50fa7b;
+  --dracula_Orange: #ffb86c;
+  --dracula_Pink: #ff79c6;
+  --dracula_Purple: #bd93f9;
+  --dracula_Red: #ff5555;
+  --dracula_Yellow: #f1fa8c;
+}
+
+/* code panel */
+.code-container .CodeMirror {
+  background-color: var(--dracula_Background);
+}
+
+.code-container .CodeMirror .CodeMirror-line {
+  color: var(--dracula_Pink);
+  font-size: 14px;
+}
+
+/* tag separators in html <, >, / */
+.code-container .cm-s-default .cm-tag.cm-bracket {
+  color: var(--dracula_Foreground);
+}
+
+/* tag names (div, span, img ...) */
+.code-container .cm-s-default .cm-tag {
+  color: var(--dracula_Pink);
+}
+
+/* html attributes (class, title, id..)*/
+.code-container .cm-s-default .cm-attribute {
+  color: var(--dracula_Green);
+}
+
+/* strings */
+.code-container .cm-s-default .cm-string {
+  color: var(--dracula_Yellow);
+}
+
+/* reference from widget
+.cm-s-default .cm-header {
+  color: red;
+}
+.cm-s-default .cm-quote {
+  color: #090;
+}
+.cm-negative {
+  color: #d44;
+}
+.cm-positive {
+  color: #292;
+}
+.cm-header,
+.cm-strong {
+  font-weight: bold;
+}
+.cm-em {
+  font-style: italic;
+}
+.cm-link {
+  text-decoration: underline;
+}
+.cm-strikethrough {
+  text-decoration: line-through;
+}
+
+.cm-s-default .cm-keyword {
+  color: #708;
+}
+.cm-s-default .cm-atom {
+  color: #219;
+}
+.cm-s-default .cm-number {
+  color: #164;
+}
+.cm-s-default .cm-def {
+  color: #00f;
+}
+.cm-s-default .cm-variable,
+.cm-s-default .cm-punctuation,
+.cm-s-default .cm-property,
+.cm-s-default .cm-operator {
+  color: var(--dracula_Foreground);
+}
+.cm-s-default .cm-variable-2 {
+  color: #05a;
+}
+.cm-s-default .cm-variable-3,
+.cm-s-default .cm-type {
+  color: #085;
+}
+.cm-s-default .cm-comment {
+  color: #a50;
+}
+
+.cm-s-default .cm-string-2 {
+  color: #f50;
+}
+.cm-s-default .cm-meta {
+  color: #555;
+}
+.cm-s-default .cm-qualifier {
+  color: #555;
+}
+.cm-s-default .cm-builtin {
+  color: #30a;
+}
+
+.cm-s-default .cm-hr {
+  color: #999;
+}
+.cm-s-default .cm-link {
+  color: #00c;
+}
+
+.cm-s-default .cm-error {
+  color: #f00;
+}
+.cm-invalidchar {
+  color: #f00;
+}
+
+.CodeMirror-composing {
+  border-bottom: 2px solid;
+} */
