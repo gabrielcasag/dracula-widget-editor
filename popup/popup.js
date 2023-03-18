@@ -1,12 +1,17 @@
-// Initialize button with user's preferred color
-let changeColor = document.getElementById("changeColor");
+console.log(`popup`);
 
-chrome.storage.sync.get("color", ({ color }) => {
-  changeColor.style.backgroundColor = color;
+// Initialize button with user's preferred color
+let switchBtn = document.getElementById("switch-btn");
+
+chrome.storage.sync.get("themeActive", ({ themeActive }) => {
+  if (themeActive) {
+    switchBtn.style.backgroundColor = themeActive;
+  }
 });
 
 // When the button is clicked, inject setWidgetEditorTheme into current page
-changeColor.addEventListener("click", async () => {
+// chrome.action.onClicked.addListener;
+switchBtn.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   chrome.scripting.executeScript({
@@ -19,10 +24,10 @@ changeColor.addEventListener("click", async () => {
 // The body of this function will be executed as a content script inside the
 // current page
 async function setWidgetEditorTheme(url) {
-  let urlSplited = url.split("?id=");
+  let urlSplitted = url.split("?id=");
 
   let isWidgetEditorPage = false;
-  if (urlSplited.length > 1 && urlSplited[1].startsWith("widget_editor")) {
+  if (urlSplitted.length > 1 && urlSplitted[1].startsWith("widget_editor")) {
     isWidgetEditorPage = true;
   }
 
@@ -58,5 +63,11 @@ async function setWidgetEditorTheme(url) {
   // get data from storage
   // chrome.storage.sync.get("color", ({ color }) => {
   //   document.body.style.backgroundColor = color;
+  // });
+
+  // // Insert the CSS file when the user turns the extension on
+  // await chrome.scripting.insertCSS({
+  //   files: ["focus-mode.css"],
+  //   target: { tabId: tab.id },
   // });
 }
