@@ -12,8 +12,8 @@
   font-size: 16px;
 }
 
-#switch-btn {
-  background-color: #0c0c0c;
+.switch {
+  background-color: #4c4c4c;
   width: 50px;
   height: 20px;
   display: block;
@@ -22,11 +22,11 @@
   position: relative;
 }
 
-#switch-btn input {
+.switch input {
   opacity: 0;
 }
 
-#switch-btn span.slider {
+.switch span.slider {
   background-color: #ccc;
   cursor: pointer;
 
@@ -45,7 +45,15 @@
   transition: 0.3s;
 }
 
-#switch-btn input:checked + .slider {
+.switch span.slider:hover {
+  background-color: #2196f3;
+}
+
+.switch input:checked + .slider {
   background-color: #2196f3;
   transform: translateX(100%) translateY(-50%);
+}
+
+.switch:has(input:checked) {
+  background-color: #0c0c0c;
 }
