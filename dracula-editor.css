@@ -84,6 +84,27 @@
   color: var(--dracula_Purple);
 }
 
+/* CSS */
+
+/* qualifier (.class, #id) */
+.code-container .cm-s-default span.cm-qualifier {
+  color: var(--dracula_Green);
+}
+
+/* 
+  property is the css props (position, display...) 
+  meta showed like (-webkit)
+*/
+.code-container .cm-s-default span.cm-property,
+.code-container .cm-s-default span.cm-meta {
+  color: var(--dracula_Cyan);
+}
+
+.code-container .cm-s-default span.cm-atom,
+.code-container .cm-s-default span.cm-number {
+  color: var(--dracula_Purple);
+}
+
 /* reference from widget
 .cm-s-default .cm-header {
   color: red;
