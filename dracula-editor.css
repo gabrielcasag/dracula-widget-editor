@@ -42,6 +42,48 @@
   color: var(--dracula_Yellow);
 }
 
+/* strings */
+.code-container .cm-s-default .cm-comment {
+  color: var(--dracula_Comment);
+}
+
+/* SERVER SCRIPT */
+/* if, var, return */
+.code-container .cm-s-snc span.cm-keyword {
+  color: var(--dracula_Pink);
+}
+
+/* variables */
+.code-container .cm-s-snc span.cm-variable,
+.code-container .cm-s-snc span.cm-variable-2,
+.code-container .cm-s-snc span.cm-def {
+  color: var(--dracula_Foreground);
+}
+
+.code-container .cm-s-snc span.cm-property {
+  color: var(--dracula_Green);
+}
+
+.code-container .cm-s-snc span.cm-comment {
+  color: var(--dracula_Comment);
+}
+
+/* string */
+.code-container .cm-s-snc span.cm-string {
+  color: var(--dracula_Yellow);
+}
+
+/* operator (=, + ) */
+.code-container .cm-s-snc span.cm-operator {
+  color: var(--dracula_Pink);
+}
+
+/* atom (true, + ) */
+.code-container .cm-s-snc span.cm-atom,
+.code-container .cm-s-snc span.cm-number {
+  color: var(--dracula_Purple);
+}
+
 /* reference from widget
 .cm-s-default .cm-header {
   color: red;
@@ -69,9 +111,7 @@
   text-decoration: line-through;
 }
 
-.cm-s-default .cm-keyword {
-  color: #708;
-}
+
 .cm-s-default .cm-atom {
   color: #219;
 }
