@@ -5,18 +5,29 @@
   <link rel="stylesheet" href="popup.css" />
 </head>
 
-<body>
-  <main class="popup-container">
-    <header>
-      <h1>Toggle the Theme</h1>
-    </header>
+<body class="popup-container">
 
-    <section>
+  <header>
+    <h1>Dracula Widget Editor</h1>
+    <i>&#129415;</i>
+  </header>
+
+  <hr>
+
+  <main>
+    <div class="configuration">
+      <strong>Enable Dracula theming</strong>
       <label class="switch">
-        <input id="switch-input" type="checkbox" />
+        <input id="input-theming" type="checkbox" />
         <span class="slider"></span>
       </label>
-    </section>
+    </div>
+
+    <div class="configuration">
+      <strong>Increase font-size</strong>
+      <input type="number" name="Font-size" id="input-font-size">
+      <button type="button" id="increase-font-size" min="8" max="100">OK</button>
+    </div>
   </main>
 
   <script src="popup.js"></script>

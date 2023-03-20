@@ -1,35 +1,36 @@
 console.log(`popup`);
 
-// Initialize button with user's preferred color
-let switchBtn = document.getElementById("switch-input");
+const inputTheming = document.getElementById("input-theming");
+const inputFontSize = document.getElementById("input-font-size");
+const btnIncreaseFontSize = document.getElementById("increase-font-size");
 
-// When the button is clicked, inject setWidgetEditorTheme into current page
-// chrome.action.onClicked.addListener;
-switchBtn.addEventListener("click", async () => {
+// When the button is clicked, run the code
+inputTheming.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  let urlSplitted = tab.url.split("?id=");
+  const checked = inputTheming.checked;
 
-  let isWidgetEditorPage = false;
-  if (urlSplitted.length > 1 && urlSplitted[1].startsWith("widget_editor")) {
-    isWidgetEditorPage = true;
-  }
+  //verify if the user is on widget editor page and has some widget open
+  let url = tab.url;
+  let isWidgetEditorPage = url.includes("id=widget_editor");
+  let urlWidgetIdSplit = url.includes("&sys_id=") ? url.split("&sys_id=") : [];
+  let hasWidgetOpenOnEditor = urlWidgetIdSplit[1]?.length >= 32;
 
-  if (!isWidgetEditorPage) {
+  if (!isWidgetEditorPage || !hasWidgetOpenOnEditor) {
     setTimeout(() => {
-      switchBtn.checked = false;
+      inputTheming.checked = false;
     }, 200);
 
     return;
   }
 
-  if (switchBtn.checked === true) {
+  if (checked === true) {
     // Insert the CSS file when the user turns the extension on
     await chrome.scripting.insertCSS({
       files: ["dracula-editor.css"],
       target: { tabId: tab.id },
     });
-  } else if (switchBtn.checked === false) {
+  } else if (checked === false) {
     // Remove the CSS file when the user turns the extension off
     await chrome.scripting.removeCSS({
       files: ["dracula-editor.css"],
@@ -37,51 +38,44 @@ switchBtn.addEventListener("click", async () => {
     });
   }
 
-  // chrome.scripting.executeScript({
-  //   target: { tabId: tab.id },
-  //   function: setWidgetEditorTheme,
-  //   args: [tab.url],
-  // });
+  await chrome.storage.sync.set({
+    themeActive: checked,
+  });
 });
 
-// The body of this function will be executed as a content script inside the
-// current page
-async function setWidgetEditorTheme(url) {
-  let urlSplitted = url.split("?id=");
+btnIncreaseFontSize.addEventListener("click", async () => {
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  let isWidgetEditorPage = false;
-  if (urlSplitted.length > 1 && urlSplitted[1].startsWith("widget_editor")) {
-    isWidgetEditorPage = true;
+  //verify if the user is on widget editor page and has some widget open
+  let url = tab.url;
+  let isWidgetEditorPage = url.includes("id=widget_editor");
+  let urlWidgetIdSplit = url.includes("&sys_id=") ? url.split("&sys_id=") : [];
+  let hasWidgetOpenOnEditor = urlWidgetIdSplit[1]?.length >= 32;
+
+  if (!isWidgetEditorPage || !hasWidgetOpenOnEditor) {
+    return;
   }
 
-  if (!isWidgetEditorPage) return;
+  let fontSize = parseInt(inputFontSize.value);
 
-  // commenting js way to try css way
+  if (!fontSize || fontSize <= 0) {
+    inputFontSize.required = true;
+    return;
+  }
 
-  // let containerBgs = document.getElementsByClassName("CodeMirror-scroll");
+  chrome.scripting.executeScript({
+    target: { tabId: tab.id },
+    function: setFontSize,
+    args: [fontSize],
+  });
+});
 
-  // if (containerBgs.length > 1) {
-  //   [...containerBgs].forEach((element) => {
-  //     element.style.backgroundColor = "#282a36";
-  //   });
-  // } else {
-  //   containerBgs[0].style.backgroundColor = "#282a36";
-  // }
+async function setFontSize(fontSize) {
+  var lines = document.querySelectorAll(
+    ".code-container .CodeMirror .CodeMirror-line"
+  );
 
-  // let allTags = document.querySelectorAll(".cm-s-default span.cm-tag");
-  // allTags.forEach((tag) => {
-  //   tag.style.color = "#ff79c6";
-  // });
-
-  // let allBrackets = document.querySelectorAll(".cm-s-default span.cm-bracket");
-  // allBrackets.forEach((bracket) => {
-  //   bracket.style.color = "#f8f8f2";
-  // });
-
-  // let allAttributes = document.querySelectorAll(
-  //   ".cm-s-default span.cm-attribute"
-  // );
-  // allAttributes.forEach((attribute) => {
-  //   attribute.style.color = "#50fa7b";
-  // });
+  for (var i = 0; i < lines.length; i++) {
+    lines[i].style.fontSize = `${fontSize}px`;
+  }
 }
