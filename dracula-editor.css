@@ -12,6 +12,11 @@
   --dracula_Yellow: #f1fa8c;
 }
 
+/* cursor */
+.CodeMirror-cursor {
+  border-color: var(--dracula_Foreground) !important;
+}
+
 /* code panel */
 .code-container .CodeMirror {
   background-color: var(--dracula_Background);
@@ -19,7 +24,7 @@
 
 .code-container .CodeMirror .CodeMirror-line {
   color: var(--dracula_Pink);
-  font-size: 14px;
+  /* font-size: 14px; */
 }
 
 /* tag separators in html <, >, / */
@@ -92,8 +97,8 @@
 }
 
 /* 
-  property is the css props (position, display...) 
-  meta showed like (-webkit)
+property is the css props (position, display...) 
+meta showed like (-webkit)
 */
 .code-container .cm-s-default span.cm-property,
 .code-container .cm-s-default span.cm-meta {
@@ -107,85 +112,69 @@
 
 /* reference from widget
 .cm-s-default .cm-header {
-  color: red;
+color: red;
 }
 .cm-s-default .cm-quote {
-  color: #090;
+color: #090;
 }
 .cm-negative {
-  color: #d44;
+color: #d44;
 }
 .cm-positive {
-  color: #292;
+color: #292;
 }
 .cm-header,
 .cm-strong {
-  font-weight: bold;
+font-weight: bold;
 }
 .cm-em {
-  font-style: italic;
+font-style: italic;
 }
 .cm-link {
-  text-decoration: underline;
+text-decoration: underline;
 }
 .cm-strikethrough {
-  text-decoration: line-through;
+text-decoration: line-through;
 }
 
-
-.cm-s-default .cm-atom {
-  color: #219;
-}
-.cm-s-default .cm-number {
-  color: #164;
-}
-.cm-s-default .cm-def {
-  color: #00f;
-}
-.cm-s-default .cm-variable,
-.cm-s-default .cm-punctuation,
-.cm-s-default .cm-property,
-.cm-s-default .cm-operator {
-  color: var(--dracula_Foreground);
-}
 .cm-s-default .cm-variable-2 {
-  color: #05a;
+color: #05a;
 }
 .cm-s-default .cm-variable-3,
 .cm-s-default .cm-type {
-  color: #085;
+color: #085;
 }
 .cm-s-default .cm-comment {
-  color: #a50;
+color: #a50;
 }
 
 .cm-s-default .cm-string-2 {
-  color: #f50;
+color: #f50;
 }
 .cm-s-default .cm-meta {
-  color: #555;
+color: #555;
 }
 .cm-s-default .cm-qualifier {
-  color: #555;
+color: #555;
 }
 .cm-s-default .cm-builtin {
-  color: #30a;
+color: #30a;
 }
 
 .cm-s-default .cm-hr {
-  color: #999;
+color: #999;
 }
 .cm-s-default .cm-link {
-  color: #00c;
+color: #00c;
 }
 
 .cm-s-default .cm-error {
-  color: #f00;
+color: #f00;
 }
 .cm-invalidchar {
-  color: #f00;
+color: #f00;
 }
 
 .CodeMirror-composing {
-  border-bottom: 2px solid;
+border-bottom: 2px solid;
 } */
