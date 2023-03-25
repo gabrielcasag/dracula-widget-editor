@@ -61,21 +61,15 @@ div.configuration {
   align-items: center;
   justify-content: space-between;
   height: 40px;
-  gap: 4px;
 }
 
 div.configuration > strong {
   font-size: 14px;
+  width: 70%;
+  white-space: nowrap;
 }
 
-div.configuration input[type="number"] {
-  width: 25%;
-  border-radius: 4px;
-  border: 1px solid var(--dracula_Foreground);
-  height: 28px;
-}
-
-/* Custom switch button */
+/* Custom switch button for toggle theme */
 .switch {
   background-color: var(--dracula_CurrentLine);
   width: 50px;
@@ -120,4 +114,41 @@ div.configuration input[type="number"] {
 
 .switch:has(input:checked) {
   background-color: #0c0c0c;
+}
+/* end custom switch */
+
+/* input for font size changing */
+div.font-size-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+div.font-size-container input[type="number"] {
+  border-radius: 4px 0 0 4px;
+  border: 1px solid var(--dracula_Foreground);
+  height: 28px;
+  width: 30%;
+}
+
+div.font-size-container button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  padding: 6px 12px;
+
+  border: none;
+  outline: none;
+
+  border-radius: 0 4px 4px 0;
+  background-color: var(--dracula_Purple);
+  color: #000;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+div.font-size-container button:hover {
+  opacity: 0.85;
 }

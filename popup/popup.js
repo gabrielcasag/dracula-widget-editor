@@ -56,6 +56,11 @@ btnIncreaseFontSize.addEventListener("click", async () => {
     return;
   }
 
+  await chrome.scripting.insertCSS({
+    files: ["font-resizing.css"],
+    target: { tabId: tab.id },
+  });
+
   let fontSize = parseInt(inputFontSize.value);
 
   if (!fontSize || fontSize <= 0) {
@@ -71,11 +76,10 @@ btnIncreaseFontSize.addEventListener("click", async () => {
 });
 
 async function setFontSize(fontSize) {
-  var lines = document.querySelectorAll(
-    ".code-container .CodeMirror .CodeMirror-line"
-  );
+  document.documentElement.style.setProperty("--font-size", fontSize + "px");
 
-  for (var i = 0; i < lines.length; i++) {
-    lines[i].style.fontSize = `${fontSize}px`;
-  }
+  document.documentElement.style.setProperty(
+    "--line-height",
+    fontSize + 4 + "px"
+  );
 }

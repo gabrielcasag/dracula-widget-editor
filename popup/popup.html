@@ -6,13 +6,12 @@
 </head>
 
 <body class="popup-container">
-
   <header>
     <h1>Dracula Widget Editor</h1>
     <i>&#129415;</i>
   </header>
 
-  <hr>
+  <hr />
 
   <main>
     <div class="configuration">
@@ -25,8 +24,12 @@
 
     <div class="configuration">
       <strong>Increase font-size</strong>
-      <input type="number" name="Font-size" id="input-font-size">
-      <button type="button" id="increase-font-size" min="8" max="100">OK</button>
+      <div class="font-size-container">
+        <input type="number" name="Font-size" id="input-font-size" required />
+        <button type="button" id="increase-font-size" min="8" max="50">
+          OK
+        </button>
+      </div>
     </div>
   </main>
 

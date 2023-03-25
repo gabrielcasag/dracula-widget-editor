@@ -13,7 +13,7 @@
 }
 
 /* cursor */
-.CodeMirror-cursor {
+.code-container .CodeMirror-cursor {
   border-color: var(--dracula_Foreground) !important;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .code-container .CodeMirror .CodeMirror-line {
-  color: var(--dracula_Pink);
+  color: var(--dracula_Foreground);
   /* font-size: 14px; */
 }
 
@@ -111,6 +111,14 @@ meta showed like (-webkit)
 }
 
 /* reference from widget
+
+.cm-editor.cm-focused {
+  outline: 2px solid cyan;
+}
+.cm-editor .cm-content {
+  font-family: "Consolas";
+}
+
 .cm-s-default .cm-header {
 color: red;
 }
