@@ -25,17 +25,9 @@ inputTheming.addEventListener("click", async () => {
   }
 
   if (checked === true) {
-    // Insert the CSS file when the user turns the extension on
-    await chrome.scripting.insertCSS({
-      files: ["dracula-editor.css"],
-      target: { tabId: tab.id },
-    });
+    enableTheme(tab);
   } else if (checked === false) {
-    // Remove the CSS file when the user turns the extension off
-    await chrome.scripting.removeCSS({
-      files: ["dracula-editor.css"],
-      target: { tabId: tab.id },
-    });
+    disableTheme(tab);
   }
 
   await chrome.storage.sync.set({
@@ -83,3 +75,42 @@ async function setFontSize(fontSize) {
     fontSize + 4 + "px"
   );
 }
+
+async function enableTheme(tab) {
+  inputTheming.checked = true;
+
+  // Insert the CSS file when the user turns the extension on
+  await chrome.scripting.insertCSS({
+    files: ["dracula-editor.css"],
+    target: { tabId: tab.id },
+  });
+  
+  await chrome.storage.sync.set({ themeActive: true });
+}
+
+async function disableTheme(tab) {
+  inputTheming.checked = false;
+  
+  // Remove the CSS file when the user turns the extension off
+  await chrome.scripting.removeCSS({
+    files: ["dracula-editor.css"],
+    target: { tabId: tab.id },
+  });
+
+  await chrome.storage.sync.set({ themeActive: false });
+}
+
+async function initializePopup() {
+  const { themeActive } = await chrome.storage.sync.get(["themeActive"]);
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  if (themeActive) {
+    enableTheme(tab);
+  } else {
+    disableTheme(tab);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  initializePopup();
+});
