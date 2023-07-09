@@ -20,8 +20,9 @@
 
 body.popup-container {
   padding: 16px;
+  border-radius: 40px;
 
-  min-width: 320px;
+  min-width: 300px;
   min-height: auto;
 
   background-color: var(--dracula_Background);
@@ -34,7 +35,7 @@ body.popup-container {
 body.popup-container header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 12px 0;
 }
 
@@ -49,12 +50,10 @@ body.popup-container i {
 }
 
 body.popup-container main {
-  margin-top: 8px;
-  padding: 8px;
-
   display: flex;
   flex-direction: column;
   gap: 12px;
+  margin-top: 12px;
 }
 
 div.configuration {

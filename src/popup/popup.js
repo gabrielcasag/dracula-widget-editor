@@ -7,16 +7,10 @@ const btnIncreaseFontSize = document.getElementById("increase-font-size");
 // When the button is clicked, run the code
 inputTheming.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
+  let url = tab.url;
   const checked = inputTheming.checked;
 
-  //verify if the user is on widget editor page and has some widget open
-  let url = tab.url;
-  let isWidgetEditorPage = url.includes("id=widget_editor");
-  let urlWidgetIdSplit = url.includes("&sys_id=") ? url.split("&sys_id=") : [];
-  let hasWidgetOpenOnEditor = urlWidgetIdSplit[1]?.length >= 32;
-
-  if (!isWidgetEditorPage || !hasWidgetOpenOnEditor) {
+  if (!isOnWidgetEditorPage(url)) {
     setTimeout(() => {
       inputTheming.checked = false;
     }, 200);
@@ -49,7 +43,7 @@ btnIncreaseFontSize.addEventListener("click", async () => {
   }
 
   await chrome.scripting.insertCSS({
-    files: ["font-resizing.css"],
+    files: ["styles/font-resizing.css"],
     target: { tabId: tab.id },
   });
 
@@ -81,7 +75,7 @@ async function enableTheme(tab) {
 
   // Insert the CSS file when the user turns the extension on
   await chrome.scripting.insertCSS({
-    files: ["dracula-editor.css"],
+    files: ["styles/dracula-editor.css"],
     target: { tabId: tab.id },
   });
   
@@ -93,24 +87,32 @@ async function disableTheme(tab) {
   
   // Remove the CSS file when the user turns the extension off
   await chrome.scripting.removeCSS({
-    files: ["dracula-editor.css"],
+    files: ["styles/dracula-editor.css"],
     target: { tabId: tab.id },
   });
 
   await chrome.storage.sync.set({ themeActive: false });
 }
 
-async function initializePopup() {
-  const { themeActive } = await chrome.storage.sync.get(["themeActive"]);
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+function isOnWidgetEditorPage(url) {
+  let isWidgetEditorPage = url.includes("id=widget_editor");
+  let urlWidgetIdSplit = url.includes("&sys_id=") ? url.split("&sys_id=") : [];
+  // let hasWidgetOpenOnEditor = urlWidgetIdSplit[1]?.length >= 32;
 
-  if (themeActive) {
-    enableTheme(tab);
-  } else {
-    disableTheme(tab);
-  }
+  return isWidgetEditorPage;
 }
 
 document.addEventListener('DOMContentLoaded', function() {
   initializePopup();
 });
+
+async function initializePopup() {
+  const { themeActive } = await chrome.storage.sync.get(["themeActive"]);
+  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
+  if (themeActive && isOnWidgetEditorPage(tab.url)) {
+    enableTheme(tab);
+  } else {
+    disableTheme(tab);
+  }
+}

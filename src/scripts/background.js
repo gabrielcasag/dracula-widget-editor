@@ -12,7 +12,7 @@ async function initialize(tab) {
 
   if (themeActive) {
     await chrome.scripting.insertCSS({
-      files: ["dracula-editor.css"],
+      files: ["styles/dracula-editor.css"],
       target: { tabId: tab.id },
     });
     

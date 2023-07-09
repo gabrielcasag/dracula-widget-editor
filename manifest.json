@@ -4,10 +4,16 @@
   "description": "Dracula color theme for the Widget Editor page of Service Portal product of ServiceNow!",
   "version": "0.0.1",
   "action": {
-    "default_popup": "popup/popup.html"
+    "default_popup": "src/popup/popup.html"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/scripts/background.js"
   },
-  "permissions": ["storage", "activeTab", "scripting", "tabs"]
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "icons": {
+    "16": "src/icons/16.png",
+    "32": "src/icons/32.png",
+    "48": "src/icons/48.png",
+    "128": "src/icons/128.png"
+  }
 }
