@@ -1,29 +1,9 @@
-:root {
-  --dracula_Background: #282a36;
-  --dracula_CurrentLine: #44475a;
-  --dracula_Foreground: #f8f8f2;
-  --dracula_Comment: #6272a4;
-  --dracula_Cyan: #8be9fd;
-  --dracula_Green: #50fa7b;
-  --dracula_Orange: #ffb86c;
-  --dracula_Pink: #ff79c6;
-  --dracula_Purple: #bd93f9;
-  --dracula_Red: #ff5555;
-  --dracula_Yellow: #f1fa8c;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body.popup-container {
-  padding: 16px;
-  border-radius: 40px;
+  padding: 24px;
+  padding-bottom: 4px;
 
   min-width: 300px;
-  min-height: auto;
+  min-height: 300px;
 
   background-color: var(--dracula_Background);
   color: var(--dracula_Foreground);
@@ -35,25 +15,30 @@ body.popup-container {
 body.popup-container header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 12px 0;
+  gap: 24px;
+  align-self: stretch;
 }
 
-body.popup-container h1 {
+body.popup-container header a {
+  text-decoration: none;
+}
+
+body.popup-container header h1 {
   font-size: 16px;
-  color: var(--dracula_Purple);
-  font-weight: bold;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
-body.popup-container i {
-  font-size: 18px;
+body.popup-container hr {
+  border-color: rgba(204, 204, 204, 0.1);
+  margin: 12px 0 24px 0;
 }
 
 body.popup-container main {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 12px;
+  gap: 24px;
 }
 
 div.configuration {
@@ -61,11 +46,11 @@ div.configuration {
   align-items: center;
   justify-content: space-between;
   height: 40px;
+  font-weight: 500;
 }
 
-div.configuration > strong {
+div.configuration > label {
   font-size: 14px;
-  width: 70%;
   white-space: nowrap;
 }
 
@@ -151,4 +136,22 @@ div.font-size-container button {
 
 div.font-size-container button:hover {
   opacity: 0.85;
+}
+
+footer {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  width: 100%;
+}
+
+footer > div {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  column-gap: 4px;
+}
+
+footer > div > span, small {
+  font-size: 10px;
 }

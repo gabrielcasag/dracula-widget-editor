@@ -5,34 +5,29 @@ async function initialize(tab) {
   let urlWidgetIdSplit = url.includes("&sys_id=") ? url.split("&sys_id=") : [];
   let hasWidgetOpenOnEditor = urlWidgetIdSplit[1]?.length >= 32;
 
-  if (!isWidgetEditorPage && !hasWidgetOpenOnEditor)  return;
+  if (!isWidgetEditorPage && !hasWidgetOpenOnEditor) return;
 
-
-  const { themeActive } = await chrome.storage.sync.get('themeActive');
+  const { themeActive } = await chrome.storage.sync.get("themeActive");
 
   if (themeActive) {
     await chrome.scripting.insertCSS({
-      files: ["styles/dracula-editor.css"],
+      files: ["src/styles/dracula-editor.css"],
       target: { tabId: tab.id },
     });
-    
+
     await chrome.storage.sync.set({ themeActive: true });
   }
 }
 
 chrome.tabs.onActivated.addListener((activeInfo) => {
-  chrome.tabs.get(
-    activeInfo.tabId, 
-    (tab) => initialize(tab)
-  );
+  chrome.tabs.get(activeInfo.tabId, (tab) => initialize(tab));
 });
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-  if (changeInfo.status === 'complete') {
+  if (changeInfo.status === "complete") {
     initialize(tab);
   }
 });
-
 
 // set an initial state or complete some tasks on installation
 chrome.runtime.onInstalled.addListener(() => {

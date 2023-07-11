@@ -1,0 +1,37 @@
+:root {
+  --dracula_Background: #282a36;
+  --dracula_CurrentLine: #44475a;
+  --dracula_Foreground: #f8f8f2;
+  --dracula_Comment: #6272a4;
+  --dracula_Cyan: #8be9fd;
+  --dracula_Green: #50fa7b;
+  --dracula_Orange: #ffb86c;
+  --dracula_Pink: #ff79c6;
+  --dracula_Purple: #bd93f9;
+  --dracula_Red: #ff5555;
+  --dracula_Yellow: #f1fa8c;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+a {
+  color: var(--dracula_Foreground);
+}
+
+a:hover, a:focus {
+  filter: brightness(0.90)
+}
+
+
+::-moz-selection { /* Code for Firefox */
+  background: var(--dracula_CurrentLine);
+}
+
+::selection {
+  background: var(--dracula_CurrentLine);
+}
